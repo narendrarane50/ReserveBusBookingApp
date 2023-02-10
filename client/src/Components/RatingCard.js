@@ -3,9 +3,9 @@ import React from "react";
 const RatingCard = (props) => {
   return (
     <div>
-      <div class="max-w-sm rounded overflow-hidden shadow-lg w-[50vh] mx-7 my-5 drop-shadow-md md:my-1 bg-white p-3">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg w-[50vh] mx-7 my-5 drop-shadow-md md:my-1 bg-white p-3">
         <div className="flex justify-start">
-          <div class="font-bold text-gray-700 rounded-full bg-white flex items-center justify-center font-mono h-[50px] w-[50px] text-xl bg-[orange] ">
+          <div className="font-bold text-gray-700 rounded-full bg-white flex items-center justify-center font-mono h-[50px] w-[50px] text-xl bg-[orange] ">
             {props.initial}
           </div>
           <div className="flex flex-col text-left pl-3">

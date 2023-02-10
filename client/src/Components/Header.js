@@ -5,7 +5,6 @@ const Header = () => {
   let Links = [
     { name: "Ticket", link: "/" },
     { name: "Contact us", link: "/" },
-    
   ];
   let [open, setOpen] = useState(false);
   return (
@@ -16,26 +15,26 @@ const Header = () => {
           text-[#FF8700] "
         >
           <Link to="/" className="pb-2">
-          <span className="text-3xl text-[#FF8700] mr-1 pt-2">
-            <ion-icon name="bus"></ion-icon>
-          </span>
-          Reserve
+            <span className="text-3xl text-[#FF8700] mr-1 pt-2">
+              <ion-icon name="bus"></ion-icon>
+            </span>
+            Reserve
           </Link>
           <ul
-          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
-            open ? "top-20 " : "top-[-490px]"
-          }`}
-        >
-          {Links.map((link) => (
-            <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
-              <a
-                href={link.link}
-                className="text-gray-800 hover:text-gray-400 duration-500"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
+            className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
+              open ? "top-20 " : "top-[-490px]"
+            }`}
+          >
+            {Links.map((link) => (
+              <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
+                <a
+                  href={link.link}
+                  className="text-gray-800 hover:text-gray-400 duration-500"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -52,7 +51,10 @@ const Header = () => {
           }`}
         >
           {Links.map((link) => (
-            <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7 md:hidden">
+            <li
+              key={link.name}
+              className="md:ml-8 text-xl md:my-0 my-7 md:hidden"
+            >
               <a
                 href={link.link}
                 className="text-gray-800 hover:text-gray-400 duration-500"
@@ -67,9 +69,9 @@ const Header = () => {
           >
             Login
           </button>
-          <li  className="md:ml-8 text-xl md:my-0 my-7">
+          <li className="md:ml-8 text-xl md:my-0 my-7">
             <a
-              href='/'
+              href="/"
               className="text-gray-800 hover:text-gray-400 duration-500"
             >
               Register
