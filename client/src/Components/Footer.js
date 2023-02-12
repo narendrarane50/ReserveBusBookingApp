@@ -18,6 +18,9 @@ const Footer = () => {
             md:justify-start
           "
             >
+              <span className="text-3xl text-[#FF8700] mr-1 pt-2">
+                <ion-icon name="bus"></ion-icon>
+              </span>
               Reserve
             </h3>
             <p>When you have a choice. Choose Reserve</p>
