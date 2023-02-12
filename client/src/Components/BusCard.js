@@ -1,23 +1,7 @@
-import React,{useState} from "react";
+import React from "react";
+import Seat from "./Seat";
 
 const BusCard = (props) => {
-  const [selectSeat, setSelectSeat] = useState(false)
-  const [bgColor, setbgColor] = useState('')
-  // const [seatNo, setSeatNo] = useState('')
-
-  let ChangeColor = () =>{
-    // setSeatNo(id)
-    // setSelectSeat(!selectSeat)
-    if(selectSeat===false){
-      setSelectSeat(true)
-      setbgColor('#0272F8')
-    }
-    else{
-      setSelectSeat(false)
-      setbgColor('')
-    }
-  }
-
   return (
     <div className="mb-4">
       <div className="border-2 flex rounded-md ">
@@ -160,69 +144,29 @@ const BusCard = (props) => {
                 </div>
                 <div className="mt-3 ml-4">
                   <div className="flex">
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300"  style={{ background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300"  style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300"  style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                   </div>
                   <div className="flex mb-12">
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                   </div>
                   <div className="flex mb-2 ml-40">
-                    <div></div>
-                    <div></div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                   </div>
                 </div>
               </div>
@@ -235,69 +179,29 @@ const BusCard = (props) => {
                 </div>
                 <div className="mt-3 ml-4">
                   <div className="flex">
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                   </div>
                   <div className="flex mb-12">
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                   </div>
                   <div className="flex mb-2 ml-40">
-                    <div></div>
-                    <div></div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
-                    <div>
-                      <button className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300" style={{background: bgColor}} onClick={ChangeColor}></button>
-                    </div>
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
+                    <Seat />
                   </div>
                 </div>
               </div>
