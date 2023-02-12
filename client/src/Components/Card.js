@@ -3,10 +3,10 @@ import React from "react";
 const Card = (props) => {
   return (
     <div>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg w-[50vh] mx-7 my-5 drop-shadow-md md:my-1">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg w-72 mx-7 my-5 border-2 drop-shadow-md md:my-1 w-64 h-64">
         <img
-          className="w-full"
-          src="https://media.gettyimages.com/id/136521748/photo/bus.jpg?s=612x612&w=gi&k=20&c=kvCDrxgMqJmY2AiUMqH2TW7nApUNmXyvD-cuWZE7dCs="
+          className="w-full h-40"
+          src={props.imageURL}
           alt="bus"
         />
         <div className="px-6 py-4">

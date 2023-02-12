@@ -4,7 +4,7 @@ import RatingCard from "../Components/RatingCard";
 import Background from "../images/background.jpg";
 import { Link } from "react-router-dom";
 
-const Home_Page = () => {
+const Home_Page = (props) => {
   return (
     <div>
       <div
@@ -42,7 +42,7 @@ const Home_Page = () => {
             </div>
           </div>
           <button className="text-white bg-[#FF8700] mt-6 p-4 text-3xl rounded-xl px-16 ">
-            <Link to="/availablebus">Search</Link>
+            <Link to="/availablebus" onClick={() =>{props.setAuthentication(true)}}>Search</Link>
           </button>
         </div>
       </div>
@@ -50,9 +50,9 @@ const Home_Page = () => {
         Travel with world's largest bus service
       </div>
       <div className="flex items-center flex-col m-5  md:flex-row md:justify-center ">
-        <Card title="2000+" description="bus collection" />
-        <Card title="20 Million" description="happy customers globally" />
-        <Card title="5000+" description="tickets book everyday" />
+        <Card title="2000+" description="bus collection" imageURL="https://play-lh.googleusercontent.com/Sq8tHWjjV4I8GdGF1tXBz7B5mJNor_996pSgSeaRvGOqyJQDsG1VB68Z7ER7Chi6Gw=w526-h296-rw"/>
+        <Card title="20 Million" description="happy customers globally" imageURL="https://image.emojipng.com/645/3039645.jpg"/>
+        <Card title="5000+" description="tickets book everyday" imageURL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqjpYRNuYwypwqkCHVCrpTtRN_ij7b960Tw&usqp=CAU"/>
       </div>
       <div className="font-bold text-2xl py-[5vh]">
         Here's what a few of our customers <br /> have to say

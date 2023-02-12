@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   let Links = [
     { name: "Ticket", link: "/" },
     { name: "Contact us", link: "/" },
   ];
   let [open, setOpen] = useState(false);
   return (
-    <div className=" w-full fixed top-0 left-0 z-40">
+    <div className=" w-full fixed top-0 left-0 z-40 border-b-4">
       <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
         <div
           className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
           text-[#FF8700] "
         >
-          <Link to="/" className="pb-2">
+          <Link to="/" className="pb-2" onClick={() =>{props.setAuthentication(false)}}>
             <span className="text-3xl text-[#FF8700] mr-1 pt-2">
               <ion-icon name="bus"></ion-icon>
             </span>
@@ -63,7 +63,7 @@ const Header = () => {
               </a>
             </li>
           ))}
-          <button
+          {!props.authentication && <><button
             className="bg-[#FF8700] text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 
     duration-500"
           >
@@ -76,7 +76,22 @@ const Header = () => {
             >
               Register
             </a>
-          </li>
+          </li></>}
+          {props.authentication && <li className="md:ml-8 text-xl md:my-0 my-7">
+            <a
+              href="/"
+              className="text-gray-800 hover:text-gray-400 duration-500"
+            >
+            <div className="flex justify-center">
+            <div className="font-bold text-gray-700 rounded-full bg-white flex items-center justify-center font-mono h-[40px] w-[40px] text-xl bg-[orange] ">
+              N
+            </div>
+            <div className="mt-2 ml-2">
+              My Profile
+            </div>
+            </div>
+            </a>
+          </li>}
         </ul>
       </div>
     </div>

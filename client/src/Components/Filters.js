@@ -2,7 +2,7 @@ import React from "react";
 
 const Filters = () => {
   return (
-    <div className="basis-1/4   mt-20 mb-5 mx-5">
+    <div className="basis-1/4   mt-24 mb-5 mx-5">
       <div className="flex justify-between border-2 py-3 px-4 font-bold mb-2 rounded-md">
         <div>Filter</div>
         <div>Clear All</div>
