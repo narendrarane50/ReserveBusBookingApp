@@ -16,7 +16,7 @@ const Seat = () => {
   return (
     <div>
       <button
-        className="border-2 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300"
+        className="border-2 border-gray-300 w-14 h-5 rounded-sm mx-3 hover:bg-slate-300"
         style={{ background: bgColor }}
         onClick={ChangeColor}
       ></button>

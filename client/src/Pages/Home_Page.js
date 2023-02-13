@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../Components/Card";
 import RatingCard from "../Components/RatingCard";
 import Background from "../images/background.jpg";
 import { Link } from "react-router-dom";
 
 const Home_Page = (props) => {
+  const [val, setVal] = useState("");
+  const data = ["Mumbai ", "Pune", "Delhi", "Chennai", "Banglore"];
   return (
     <div>
       <div
@@ -15,21 +17,38 @@ const Home_Page = (props) => {
           <div className="flex flex-col md:flex-row justify-center items-center pt-[15vh] h-[65vh] rounded-xl ">
             <div className="border-2 pr-3 py-4 rounded-l-xl text-left pl-3 bg-white">
               <input
+                list="data"
+                onChange={(e) => setVal(e.target.value)}
                 type="search"
                 className="w-80 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="From"
                 aria-label="From"
                 aria-describedby="button-addon2"
               />
+
+              <datalist id="data">
+                {data.map((op,id) => (
+                  <option key={id}>{op}</option>
+                ))}
+              </datalist>
+              
             </div>
             <div className="border-2 pr-3 py-4 text-left pl-3 bg-white">
               <input
+                list="data"
+                onChange={(e) => setVal(e.target.value)}
                 type="search"
                 className="w-80 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="To"
                 aria-label="To"
                 aria-describedby="button-addon2"
               />
+              <datalist id="data">
+                {data.map((op,id) => (
+                  <option key={id}>{op}</option>
+                ))}
+              </datalist>
+              
             </div>
             <div className="border-2 pr-3 py-4 pl-3 rounded-r-xl bg-white">
               <input
@@ -42,7 +61,14 @@ const Home_Page = (props) => {
             </div>
           </div>
           <button className="text-white bg-[#FF8700] mt-6 p-4 text-3xl rounded-xl px-16 ">
-            <Link to="/availablebus" onClick={() =>{props.setAuthentication(true)}}>Search</Link>
+            <Link
+              to="/availablebus"
+              onClick={() => {
+                props.setAuthentication(true);
+              }}
+            >
+              Search
+            </Link>
           </button>
         </div>
       </div>
@@ -50,9 +76,21 @@ const Home_Page = (props) => {
         Travel with world's largest bus service
       </div>
       <div className="flex items-center flex-col m-5  md:flex-row md:justify-center ">
-        <Card title="2000+" description="bus collection" imageURL="https://play-lh.googleusercontent.com/Sq8tHWjjV4I8GdGF1tXBz7B5mJNor_996pSgSeaRvGOqyJQDsG1VB68Z7ER7Chi6Gw=w526-h296-rw"/>
-        <Card title="20 Million" description="happy customers globally" imageURL="https://image.emojipng.com/645/3039645.jpg"/>
-        <Card title="5000+" description="tickets book everyday" imageURL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqjpYRNuYwypwqkCHVCrpTtRN_ij7b960Tw&usqp=CAU"/>
+        <Card
+          title="2000+"
+          description="bus collection"
+          imageURL="https://play-lh.googleusercontent.com/Sq8tHWjjV4I8GdGF1tXBz7B5mJNor_996pSgSeaRvGOqyJQDsG1VB68Z7ER7Chi6Gw=w526-h296-rw"
+        />
+        <Card
+          title="20 Million"
+          description="happy customers globally"
+          imageURL="https://image.emojipng.com/645/3039645.jpg"
+        />
+        <Card
+          title="5000+"
+          description="tickets book everyday"
+          imageURL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUqjpYRNuYwypwqkCHVCrpTtRN_ij7b960Tw&usqp=CAU"
+        />
       </div>
       <div className="font-bold text-2xl py-[5vh]">
         Here's what a few of our customers <br /> have to say
