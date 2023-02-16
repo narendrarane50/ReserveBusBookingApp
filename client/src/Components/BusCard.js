@@ -2,6 +2,9 @@ import React from "react";
 import Seat from "./Seat";
 
 const BusCard = (props) => {
+  const links = ["Live Tracking","Policies","Photos","Amenities","Reviews"]
+  const priceRanges=["All","699","899","1199","1599"]
+  const seats = ["Vacant","Reserved","Selected"]
   return (
     <div className="mb-4 ">
       <div className="border-2 border-gray-300 flex rounded-md ">
@@ -44,11 +47,9 @@ const BusCard = (props) => {
             </div>
           </div>
           <div className="flex text-blue-700 pt-8">
-            <div>Live Tracking</div>
-            <div className="pl-8">Policies</div>
-            <div className="pl-8">Photos</div>
-            <div className="pl-8">Amenities</div>
-            <div className="pl-8">Reviews</div>
+            {links.map((link) => (
+              <div className="pr-8">{link}</div>
+            ))}
           </div>
         </div>
 
@@ -76,61 +77,25 @@ const BusCard = (props) => {
               <div className="font-bold text-2xl ">Select Seats</div>
               <div className="flex my-4">
                 <div className="text-gray-400">Seat Price</div>
-                <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
+                {priceRanges.map((price)=>(
+                  <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
                     name="price"
                     type="radio"
                   />
-                  <span className="text-sm ">All</span>
+                  <span className="text-sm ">&#8377;{price}</span>
                 </div>
-                <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
-                  <input
-                    className="mr-2 leading-tight"
-                    name="price"
-                    type="radio"
-                  />
-                  <span className="text-sm ">&#8377;699</span>
-                </div>
-                <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
-                  <input
-                    className="mr-2 leading-tight"
-                    name="price"
-                    type="radio"
-                  />
-                  <span className="text-sm ">&#8377;899</span>
-                </div>
-                <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
-                  <input
-                    className="mr-2 leading-tight"
-                    name="price"
-                    type="radio"
-                  />
-                  <span className="text-sm ">&#8377;1199</span>
-                </div>
-                <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
-                  <input
-                    className="mr-2 leading-tight"
-                    name="price"
-                    type="radio"
-                  />
-                  <span className="text-sm ">&#8377;1599</span>
-                </div>
+                ))}
               </div>
             </div>
             <div className="basis-1/5 text-start text-gray-600">
-              <div className="">
+              {seats.map((seat)=>(
+                <div className="">
                 <input className="mr-2 leading-tight" type="checkbox" />
-                <span className="text-sm">Vacant Seats</span>
+                <span className="text-sm">{seat} Seats</span>
               </div>
-              <div className="">
-                <input className="mr-2 leading-tight" type="checkbox" />
-                <span className="text-sm">Reserved Seats</span>
-              </div>
-              <div className="">
-                <input className="mr-2 leading-tight" type="checkbox" />
-                <span className="text-sm">Selected Seats</span>
-              </div>
+              ))}
             </div>
           </div>
           <div className="flex m-2 ">

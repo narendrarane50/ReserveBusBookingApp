@@ -3,6 +3,8 @@ import Card from "../Components/Card";
 import RatingCard from "../Components/RatingCard";
 import Background from "../images/background.jpg";
 import { Link } from "react-router-dom";
+import buses from '../images/buses.jpg'
+import SearchInput from "../Components/SearchInput";
 
 const Home_Page = (props) => {
   const [val, setVal] = useState("");
@@ -16,38 +18,10 @@ const Home_Page = (props) => {
         <div className="flex-col flex items-center">
           <div className="flex flex-col md:flex-row justify-center items-center pt-[15vh] h-[65vh] rounded-xl ">
             <div className="border-2 pr-3 py-4 rounded-l-xl text-left pl-3 bg-white">
-              <input
-                list="data"
-                onChange={(e) => setVal(e.target.value)}
-                type="search"
-                className="w-80 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="From"
-                aria-label="From"
-                aria-describedby="button-addon2"
-              />
-
-              <datalist id="data">
-                {data.map((op,id) => (
-                  <option key={id}>{op}</option>
-                ))}
-              </datalist>
-              
+              <SearchInput setVal={setVal} data={data}/>
             </div>
             <div className="border-2 pr-3 py-4 text-left pl-3 bg-white">
-              <input
-                list="data"
-                onChange={(e) => setVal(e.target.value)}
-                type="search"
-                className="w-80 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="To"
-                aria-label="To"
-                aria-describedby="button-addon2"
-              />
-              <datalist id="data">
-                {data.map((op,id) => (
-                  <option key={id}>{op}</option>
-                ))}
-              </datalist>
+              <SearchInput setVal={setVal} data={data}/>
               
             </div>
             <div className="border-2 pr-3 py-4 pl-3 rounded-r-xl bg-white">
@@ -79,7 +53,7 @@ const Home_Page = (props) => {
         <Card
           title="2000+"
           description="bus collection"
-          imageURL="https://play-lh.googleusercontent.com/Sq8tHWjjV4I8GdGF1tXBz7B5mJNor_996pSgSeaRvGOqyJQDsG1VB68Z7ER7Chi6Gw=w526-h296-rw"
+          imageURL={buses}
         />
         <Card
           title="20 Million"
