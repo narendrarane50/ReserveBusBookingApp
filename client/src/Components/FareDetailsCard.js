@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 
 const FareDetailsCard = () => {
   return (
@@ -24,7 +25,7 @@ const FareDetailsCard = () => {
         className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
     duration-500"
       >
-        Proceed to Payment
+        <Link to="/payment">Proceed to Payment</Link>
       </button>
     </div>
   );

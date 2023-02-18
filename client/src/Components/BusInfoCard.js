@@ -2,6 +2,7 @@ import React from "react";
 
 const BusInfoCard = () => {
   return (
+    <div className='border-2 rounded-md'>
     <div className="text-left p-4">
       <div className="flex ">
         <div className="font-bold">
@@ -48,6 +49,7 @@ const BusInfoCard = () => {
           <div className="text-gray-400">Taxi Stand, Chhatrapati road</div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

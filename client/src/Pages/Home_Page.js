@@ -18,10 +18,10 @@ const Home_Page = (props) => {
         <div className="flex-col flex items-center">
           <div className="flex flex-col md:flex-row justify-center items-center pt-[15vh] h-[65vh] rounded-xl ">
             <div className="border-2 pr-3 py-4 rounded-l-xl text-left pl-3 bg-white">
-              <SearchInput setVal={setVal} data={data}/>
+              <SearchInput setVal={setVal} data={data} placeholder="From"/>
             </div>
             <div className="border-2 pr-3 py-4 text-left pl-3 bg-white">
-              <SearchInput setVal={setVal} data={data}/>
+              <SearchInput setVal={setVal} data={data} placeholder="To"/>
               
             </div>
             <div className="border-2 pr-3 py-4 pl-3 rounded-r-xl bg-white">

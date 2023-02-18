@@ -1,8 +1,11 @@
 import React from 'react'
+import BookingConfirmCard from '../Components/BookingConfirmCard'
 
 const Payment_page = () => {
   return (
-    <div className='my-24'>Payment_page</div>
+    <div className='mt-28 mb-8'>
+      <BookingConfirmCard />
+    </div>
   )
 }
 
