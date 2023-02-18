@@ -5,6 +5,8 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import HomePage from './Pages/Home_Page';
 import AvailableBusPage from './Pages/Available_bus_page';
+import InfoPage from './Pages/Info_page';
+import PaymentPage from './Pages/Payment_page';
 
 function App() {
   const [authentication, setAuthentication] = useState(false)
@@ -15,6 +17,8 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage authentication={authentication} setAuthentication={setAuthentication} />} />
           <Route path='/availablebus' element={<AvailableBusPage />} />
+          <Route path='/info' element={<InfoPage />} />
+          <Route path='/payment' element={<PaymentPage />} />
         </Routes>
       </main>
       <Footer />

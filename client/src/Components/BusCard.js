@@ -1,5 +1,6 @@
 import React from "react";
 import Seat from "./Seat";
+import {Link} from "react-router-dom"
 
 const BusCard = (props) => {
   const links = ["Live Tracking","Policies","Photos","Amenities","Reviews"]
@@ -211,7 +212,7 @@ const BusCard = (props) => {
                     className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
     duration-500"
                   >
-                    Proceed to Payment
+                    <Link to="/info">Proceed to Payment</Link>
                   </button>
                 </div>
               </div>
