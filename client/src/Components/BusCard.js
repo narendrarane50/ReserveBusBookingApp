@@ -48,8 +48,8 @@ const BusCard = (props) => {
             </div>
           </div>
           <div className="flex text-blue-700 pt-8">
-            {links.map((link) => (
-              <div className="pr-8">{link}</div>
+            {links.map((link,id) => (
+              <div key={id} className="pr-8">{link}</div>
             ))}
           </div>
         </div>
@@ -78,8 +78,8 @@ const BusCard = (props) => {
               <div className="font-bold text-2xl ">Select Seats</div>
               <div className="flex my-4">
                 <div className="text-gray-400">Seat Price</div>
-                {priceRanges.map((price)=>(
-                  <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
+                {priceRanges.map((price,id)=>(
+                  <div key={id} className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
                     name="price"
@@ -91,8 +91,8 @@ const BusCard = (props) => {
               </div>
             </div>
             <div className="basis-1/5 text-start text-gray-600">
-              {seats.map((seat)=>(
-                <div className="">
+              {seats.map((seat,id)=>(
+                <div key={id} className="">
                 <input className="mr-2 leading-tight" type="checkbox" />
                 <span className="text-sm">{seat} Seats</span>
               </div>
@@ -212,7 +212,7 @@ const BusCard = (props) => {
                     className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
     duration-500"
                   >
-                    <Link to="/info">Proceed to Payment</Link>
+                    <Link to="/info">Proceed to Book</Link>
                   </button>
                 </div>
               </div>

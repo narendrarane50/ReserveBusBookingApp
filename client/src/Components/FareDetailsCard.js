@@ -1,32 +1,34 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const FareDetailsCard = () => {
   return (
-    <div className="p-4 border-2 rounded-md">
-      <div className="text-left font-bold">Fare Details</div>
-      <div className="flex justify-between my-2">
-        <div className="text-sm text-slate-600">Base Fare</div>
-        <div className="font-bold">&#8377;799</div>
-      </div>
-      <div className="flex justify-between my-2">
-        <div className="text-sm text-slate-600">Tax</div>
-        <div className="font-bold">&#8377;150</div>
-      </div>
-      <div className="flex justify-between my-2">
-        <div className="text-sm text-slate-600">Offer Applied</div>
-        <div className="font-bold">&#8377;50</div>
-      </div>
-      <div className="flex justify-between my-2 mt-8 pt-4 border-t-2">
-        <div className="text-sm text-slate-600">Total Price</div>
-        <div className="font-bold text-2xl">&#8377;899</div>
-      </div>
-      <button
-        className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
+    <div className="basis-1/4 ml-3">
+      <div className="p-4 border-2 rounded-md">
+        <div className="text-left font-bold">Fare Details</div>
+        <div className="flex justify-between my-2">
+          <div className="text-sm text-slate-600">Base Fare</div>
+          <div className="font-bold">&#8377;799</div>
+        </div>
+        <div className="flex justify-between my-2">
+          <div className="text-sm text-slate-600">Tax</div>
+          <div className="font-bold">&#8377;150</div>
+        </div>
+        <div className="flex justify-between my-2">
+          <div className="text-sm text-slate-600">Offer Applied</div>
+          <div className="font-bold">&#8377;50</div>
+        </div>
+        <div className="flex justify-between my-2 mt-8 pt-4 border-t-2">
+          <div className="text-sm text-slate-600">Total Price</div>
+          <div className="font-bold text-2xl">&#8377;899</div>
+        </div>
+        <button
+          className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
     duration-500"
-      >
-        <Link to="/payment">Proceed to Payment</Link>
-      </button>
+        >
+          <Link to="/payment">Proceed to Payment</Link>
+        </button>
+      </div>
     </div>
   );
 };

@@ -11,13 +11,9 @@ const Info_page = () => {
         <div className="font-bold text-xl text-left mt-8 mb-4">
           Enter traveller Details
         </div>
-        <div className="border-2 rounded-md">
-          <DetailsInputCard />
-        </div>
+        <DetailsInputCard />
       </div>
-      <div className="basis-1/4 ml-3">
-        <FareDetailsCard />
-      </div>
+      <FareDetailsCard />
     </div>
   );
 };
