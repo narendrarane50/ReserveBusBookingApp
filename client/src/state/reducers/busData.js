@@ -1,17 +1,39 @@
-import { SET_BUSDATA } from "../../constants/actionTypes";
+import actionTypes from "../../constants/actionTypes";
 
 
 
-const INIT_STATE = [];
+const busLocation = [];
 
-const busDataReducer = (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case SET_BUSDATA:
-      return [{...action.payload}];
+// const busDataReducer = (state=busLocation, action) => {
+//     console.log(busLocation)
+//   switch (action.type) {
+//     case actionTypes.SET_BUSDATA:
+//       return  {
+//         ...state,
+//         busLocation: action.payload,
+//       };
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
-export default busDataReducer;
+// export default busDataReducer;
+
+const busDataReducer = (state = busLocation, action) => {
+    switch (action.type) {
+      case actionTypes.SET_BUSDATA:
+        return {
+          ...state,
+          busLocation: action.payload,
+        };
+  
+      case actionTypes.SET_BUSDATA_ERROR:
+        return state;
+  
+      default:
+        return state;
+    }
+  };
+  
+  export default busDataReducer;

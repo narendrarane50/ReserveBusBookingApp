@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Seat from "./Seat";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setBusData } from '../state/actions/busData';
 
 const BusCard = (props) => {
@@ -11,7 +11,8 @@ const BusCard = (props) => {
   const [filterPrice, setFilterPrice] = useState("");
   const [selectedSeat, setSelectedSeat] = useState("");
   const [filteredSeats, setFilteredSeats] = useState(["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38",]);
-  const busData = useSelector((state) => state.busData);
+  //const busData = useSelector((state) => state.busData);
+  //console.log(busData.busLocation.busName)
   const dispatch = useDispatch();
 
   const setFilter = (event) => {
@@ -28,12 +29,24 @@ const BusCard = (props) => {
     }
   };
 
-  const handleClick =  () => {
-    dispatch(setBusData({
-      busName:props.busName,
-      busRating:"props.busRating"
-    }))
-    console.log(busData.busName ,"and",busData.busRating)
+  const a = {
+    busName:props.busName,
+    busRating:props.busRating,
+    busFromDate:props.busFromDate,
+    busFromTime:props.busFromTime,
+    busToDate:props.busToDate,
+    busToTime:props.busToTime,
+    busTimeInterval:props.busTimeInterval
+  }
+
+  const handleClick = async () => {
+    
+    console.log(a)
+    await setBusData(dispatch,a)
+    //console.log(busData)
+    //console.log(busData.busLocation.busName)
+    // await dispatch(setBusData(a))
+    //console.log(busData.busName ,"and",busData.busRating)
   }
   return (
     <div className="mb-4 ">

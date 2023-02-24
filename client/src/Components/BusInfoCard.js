@@ -1,14 +1,17 @@
 import React from "react";
+import {  useSelector } from 'react-redux';
+
 
 const BusInfoCard = () => {
+  const busData = useSelector((state) => state.busData);
   return (
     <div className='border-2 rounded-md'>
     <div className="text-left p-4">
       <div className="flex ">
         <div className="font-bold">
-          <span className="text-xl">InterCity Smart Bus </span>
+          <span className="text-xl">{busData.busLocation.busName} </span>
           <span className="bg-[#119513] rounded-md text-white p-0.5 ml-2">
-            <ion-icon name="star-outline"></ion-icon>4.5
+            <ion-icon name="star-outline"></ion-icon>{busData.busLocation.busRating}
           </span>
           <span className="px-2 text-gray-400 text-xs">Ratings</span>
         </div>
@@ -28,15 +31,15 @@ const BusInfoCard = () => {
       </div>
       <div className="flex py-2 ">
         <div>
-          <span className=" pr-2 text-lg font-semibold">22:45, 16 NOV</span>
+          <span className=" pr-2 text-lg font-semibold">{busData.busLocation.busFromTime}, {busData.busLocation.busFromDate}</span>
         </div>
         <div>
           <span className="px-2 text-s text-slate-500 text-center align-middle">
-            ----------07 hrs 59 mins---------
+            ----------{busData.busLocation.busTimeInterval}---------
           </span>
         </div>
         <div>
-          <span className="px-2 text-lg font-semibold">6:20, 17 NOV</span>
+          <span className="px-2 text-lg font-semibold">{busData.busLocation.busToTime}, {busData.busLocation.busToDate}</span>
         </div>
       </div>
       <div className="flex my-2">
