@@ -9,11 +9,13 @@
 
 import { combineReducers } from "redux";
 import busDataReducer from "./busData";
+import fromToReducer from "./fromTo";
 // import buslocationReducer from "./busLocationReducer";
 
 //main reducer of the App
 const rootReducer = combineReducers ({
-    busData: busDataReducer
+    busData: busDataReducer,
+    fromTo:fromToReducer
 })
 
 

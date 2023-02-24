@@ -1,12 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const DetailsInputCard = () => {
+  const busData = useSelector((state) => state.busData);
   return (
     <div className="border-2 rounded-md">
       <div className="text-left p-4">
         <div className="font-bold">
           <span>Passenger1</span>
-          <span className="ml-3">Seat 16</span>
+          <span className="ml-3">Seat {busData.busLocation.selectedSeat}</span>
         </div>
         <div className="flex">
           <div className="my-2">

@@ -4,6 +4,7 @@ import {  useSelector } from 'react-redux';
 
 const BusInfoCard = () => {
   const busData = useSelector((state) => state.busData);
+  const fromTo = useSelector((state) => state.fromTo);
   return (
     <div className='border-2 rounded-md'>
     <div className="text-left p-4">
@@ -44,11 +45,11 @@ const BusInfoCard = () => {
       </div>
       <div className="flex my-2">
         <div className="text-sm">
-          <div className="font-semibold">Pune</div>
+          <div className="font-semibold">{fromTo.INIT_STATE.From}</div>
           <div className="text-gray-400">Taxi Stand, Chhatrapati road</div>
         </div>
         <div className="text-sm ml-60">
-          <div className="font-semibold">Kolkata</div>
+          <div className="font-semibold">{fromTo.INIT_STATE.To}</div>
           <div className="text-gray-400">Taxi Stand, Chhatrapati road</div>
         </div>
       </div>

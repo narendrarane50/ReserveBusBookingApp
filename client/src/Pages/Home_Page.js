@@ -5,10 +5,22 @@ import Background from "../images/background.jpg";
 import { Link } from "react-router-dom";
 import buses from "../images/buses.jpg";
 import SearchInput from "../Components/SearchInput";
+import { useDispatch } from "react-redux";
+import { setFromTo } from "../state/actions/fromTo";
 
 const Home_Page = (props) => {
-  const [val, setVal] = useState("");
+  const [from, setFrom] = useState("");
+  const [to,setTo] = useState("")
   const data = ["Mumbai ", "Pune", "Delhi", "Chennai", "Banglore"];
+  const dispatch = useDispatch()
+
+  const handleClick = async () => {
+    props.setAuthentication(true);
+    await setFromTo(dispatch,{
+      From:from,
+      To:to
+    })
+  }
   const cardDetails = [
     {
       title: "2000+",
@@ -54,10 +66,10 @@ const Home_Page = (props) => {
         <div className="flex-col flex items-center">
           <div className="flex flex-col md:flex-row justify-center items-center pt-[15vh] h-[65vh] rounded-xl ">
             <div className="border-2 pr-3 py-4 rounded-l-xl text-left pl-3 bg-white">
-              <SearchInput setVal={setVal} data={data} placeholder="From" />
+              <SearchInput setVal={setFrom} data={data} placeholder="From" />
             </div>
             <div className="border-2 pr-3 py-4 text-left pl-3 bg-white">
-              <SearchInput setVal={setVal} data={data} placeholder="To" />
+              <SearchInput setVal={setTo} data={data} placeholder="To" />
             </div>
             <div className="border-2 pr-3 py-4 pl-3 rounded-r-xl bg-white">
               <input
@@ -72,9 +84,10 @@ const Home_Page = (props) => {
           <button className="text-white bg-[#FF8700] mt-6 p-4 text-3xl rounded-xl px-16 ">
             <Link
               to="/availablebus"
-              onClick={() => {
-                props.setAuthentication(true);
-              }}
+              // onClick={() => {
+              //   props.setAuthentication(true);
+              // }}
+              onClick={handleClick}
             >
               Search
             </Link>

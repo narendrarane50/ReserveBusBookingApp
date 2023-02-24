@@ -10,7 +10,7 @@ const Available_bus_page = () => {
       <Filters />
       <div className="basis-3/4 mt-24 mb-5 mr-5">
         {BusData.map((bus,id)=>(
-          <BusCard key={id} busid={bus.id} busName={bus.BusName} busRating={bus.Rating} busFromDate={bus.FromDate} busFromTime={bus.FromTime} busToDate={bus.ToDate} busToTime={bus.ToTime} busTimeInterval={bus.TimeInterval} showBus={showBus} setShowBus={setShowBus}/>
+          <BusCard key={id} busid={bus.id} busName={bus.BusName} busRating={bus.Rating} busFrom={bus.From} busTo={bus.To} busFromDate={bus.FromDate} busFromTime={bus.FromTime} busToDate={bus.ToDate} busToTime={bus.ToTime} busTimeInterval={bus.TimeInterval} showBus={showBus} setShowBus={setShowBus}/>
         ))}
       </div>
     </div>

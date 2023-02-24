@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Seat from "./Seat";
 import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { setBusData } from '../state/actions/busData';
+
 
 const BusCard = (props) => {
   const links = ["Live Tracking", "Policies", "Photos", "Amenities", "Reviews"];
@@ -13,6 +14,8 @@ const BusCard = (props) => {
   const [filteredSeats, setFilteredSeats] = useState(["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38",]);
   //const busData = useSelector((state) => state.busData);
   //console.log(busData.busLocation.busName)
+  const fromTo = useSelector((state) => state.fromTo);
+  
   const dispatch = useDispatch();
 
   const setFilter = (event) => {
@@ -36,11 +39,13 @@ const BusCard = (props) => {
     busFromTime:props.busFromTime,
     busToDate:props.busToDate,
     busToTime:props.busToTime,
-    busTimeInterval:props.busTimeInterval
+    busTimeInterval:props.busTimeInterval,
+    selectedSeat:selectedSeat,
+    filterPrice:filterPrice
   }
 
   const handleClick = async () => {
-    
+    console.log(fromTo)
     console.log(a)
     await setBusData(dispatch,a)
     //console.log(busData)
@@ -50,7 +55,7 @@ const BusCard = (props) => {
   }
   return (
     <div className="mb-4 ">
-      <div className="border-2 border-gray-300 flex rounded-md ">
+      {fromTo.INIT_STATE.From===props.busFrom && fromTo.INIT_STATE.From===props.busFrom && (<div className="border-2 border-gray-300 flex rounded-md ">
         <div className="basis-3/4 border-r-2 border-gray-300 text-left p-4">
           <div className="flex ">
             <div className="font-bold">
@@ -114,7 +119,7 @@ const BusCard = (props) => {
             View Seat
           </button>
         </div>
-      </div>
+      </div>)}
       {props.showBus === props.busid && (
         <div className="border-2 border-gray-300 rounded-md ">
           <div className="m-2 flex">
