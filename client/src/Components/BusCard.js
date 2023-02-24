@@ -1,30 +1,39 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Seat from "./Seat";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { setBusData } from '../state/actions/busData';
 
 const BusCard = (props) => {
-  const links = ["Live Tracking","Policies","Photos","Amenities","Reviews"]
-  const priceRanges=["All","699","899","1199","1599"]
-  const seats = ["Vacant","Reserved","Selected"]
-  const [filterPrice, setFilterPrice] = useState('')
-  const [selectedSeat, setSelectedSeat] = useState('')
-  const [filteredSeats, setFilteredSeats] = useState(["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"])
-  const setFilter = (event) =>{
-    if(event.target.value==="699"){
-    setFilteredSeats(["01","07","08","14","19","20","26","27","33","38"])
+  const links = ["Live Tracking", "Policies", "Photos", "Amenities", "Reviews"];
+  // const priceRanges=["All","699","899","1199","1599"]
+  const seats = ["Vacant", "Reserved", "Selected"];
+  const [filterPrice, setFilterPrice] = useState("");
+  const [selectedSeat, setSelectedSeat] = useState("");
+  const [filteredSeats, setFilteredSeats] = useState(["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38",]);
+  const busData = useSelector((state) => state.busData);
+  const dispatch = useDispatch();
+
+  const setFilter = (event) => {
+    if (event.target.value === "699") {
+      setFilteredSeats(["01","07","08","14","19","20","26","27","33","38",]);
+    } else if (event.target.value === "All") {
+      setFilteredSeats(["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"]);
+    } else if (event.target.value === "899") {
+      setFilteredSeats(["02","06","09","13","18","21","25","28","32","37"]);
+    } else if (event.target.value === "1199") {
+      setFilteredSeats(["03","05","10","12","15","17","22","24","29","31","34","36"]);
+    } else if (event.target.value === "1599") {
+      setFilteredSeats(["04", "11", "16", "23", "30", "35"]);
     }
-    else if(event.target.value==="All"){
-      setFilteredSeats(["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38"])
-    }
-    else if(event.target.value==="899"){
-      setFilteredSeats(["02","06","09","13","18","21","25","28","32","37"])
-    }
-    else if(event.target.value==="1199"){
-      setFilteredSeats(["03","05","10","12","15","17","22","24","29","31","34","36"])
-    }
-    else if(event.target.value==="1599"){
-      setFilteredSeats(["04","11","16","23","30","35"])
-    }
+  };
+
+  const handleClick =  () => {
+    dispatch(setBusData({
+      busName:props.busName,
+      busRating:"props.busRating"
+    }))
+    console.log(busData.busName ,"and",busData.busRating)
   }
   return (
     <div className="mb-4 ">
@@ -32,9 +41,9 @@ const BusCard = (props) => {
         <div className="basis-3/4 border-r-2 border-gray-300 text-left p-4">
           <div className="flex ">
             <div className="font-bold">
-              <span className="text-xl">InterCity Smart Bus </span>
+              <span className="text-xl">{props.busName}</span>
               <span className="bg-[#119513] rounded-md text-white p-0.5 ml-2">
-                <ion-icon name="star-outline"></ion-icon>4.5
+                <ion-icon name="star-outline"></ion-icon>{props.busRating}
               </span>
               <span className="px-2 text-gray-400 text-xs">Ratings</span>
             </div>
@@ -56,20 +65,22 @@ const BusCard = (props) => {
           </div>
           <div className="flex py-2 ">
             <div>
-              <span className=" pr-2 text-lg font-semibold">22:45, 16 NOV</span>
+              <span className=" pr-2 text-lg font-semibold">{props.busFromTime}, {props.busFromDate}</span>
             </div>
             <div>
               <span className="px-2 text-s text-slate-500 text-center align-middle">
-                ----------07 hrs 59 mins---------
+                ----------{props.busTimeInterval}---------
               </span>
             </div>
             <div>
-              <span className="px-2 text-lg font-semibold">6:20, 17 NOV</span>
+              <span className="px-2 text-lg font-semibold">{props.busToTime}, {props.busToDate}</span>
             </div>
           </div>
           <div className="flex text-blue-700 pt-8">
-            {links.map((link,id) => (
-              <div key={id} className="pr-8">{link}</div>
+            {links.map((link, id) => (
+              <div key={id} className="pr-8">
+                {link}
+              </div>
             ))}
           </div>
         </div>
@@ -82,34 +93,22 @@ const BusCard = (props) => {
             className="bg-[#FF8700] text-white font-[Poppins] mt-3 py-2 px-8 rounded  hover:bg-indigo-400 
     duration-500"
             onClick={() =>
-              props.busNo === props.showBus
+              props.busid === props.showBus
                 ? props.setShowBus("")
-                : props.setShowBus(props.busNo)
+                : props.setShowBus(props.busid)
             }
           >
             View Seat
           </button>
         </div>
       </div>
-      {props.showBus === props.busNo && (
+      {props.showBus === props.busid && (
         <div className="border-2 border-gray-300 rounded-md ">
           <div className="m-2 flex">
             <div className="basis-4/5 text-start">
               <div className="font-bold text-2xl ">Select Seats</div>
               <div className="flex my-4">
                 <div className="text-gray-400">Seat Price</div>
-                {/* {priceRanges.map((price,id)=>(
-                  <div key={id} className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
-                  <input
-                    className="mr-2 leading-tight"
-                    name="price"
-                    type="radio"
-                    checked={ischecked(price)}
-                    onClick={()=>(price==='All')?setFilterPrice('899'): setFilterPrice(price)}
-                  />
-                  <span className="text-sm ">&#8377;{price}</span>
-                </div>
-                ))} */}
                 <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
@@ -117,63 +116,58 @@ const BusCard = (props) => {
                     type="radio"
                     value="All"
                     defaultChecked={true}
-                    
                     onClick={setFilter}
                   />
-                  <label className="text-sm "  >&#8377;All</label>
+                  <label className="text-sm ">&#8377;All</label>
                 </div>
                 <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
                     name="price"
                     type="radio"
-                    
                     value="699"
                     onClick={setFilter}
                   />
-                  <label className="text-sm " >&#8377;699</label>
+                  <label className="text-sm ">&#8377;699</label>
                 </div>
                 <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
                     name="price"
                     type="radio"
-                    
                     value="899"
                     onClick={setFilter}
                   />
-                  <label className="text-sm " >&#8377;899</label>
+                  <label className="text-sm ">&#8377;899</label>
                 </div>
                 <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
                     name="price"
                     type="radio"
-                    
                     value="1199"
                     onClick={setFilter}
                   />
-                  <label className="text-sm " >&#8377;1199</label>
+                  <label className="text-sm ">&#8377;1199</label>
                 </div>
                 <div className="border-2 border-gray-300 mr-2 ml-4 px-2 text-gray-400 rounded-md">
                   <input
                     className="mr-2 leading-tight"
                     name="price"
                     type="radio"
-                    
                     value="1599"
                     onClick={setFilter}
                   />
-                  <label className="text-sm " >&#8377;1599</label>
+                  <label className="text-sm ">&#8377;1599</label>
                 </div>
               </div>
             </div>
             <div className="basis-1/5 text-start text-gray-600">
-              {seats.map((seat,id)=>(
+              {seats.map((seat, id) => (
                 <div key={id} className="">
-                <input className="mr-2 leading-tight" type="checkbox" />
-                <span className="text-sm">{seat} Seats</span>
-              </div>
+                  <input className="mr-2 leading-tight" type="checkbox" />
+                  <span className="text-sm">{seat} Seats</span>
+                </div>
               ))}
             </div>
           </div>
@@ -188,29 +182,124 @@ const BusCard = (props) => {
                 </div>
                 <div className="mt-3 ml-4">
                   <div className="flex">
-                    <Seat seatno="01" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="02" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="03" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="04" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="05" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="06" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="07" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
+                    <Seat
+                      seatno="01"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="02"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="03"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="04"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="05"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="06"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="07"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
                   </div>
                   <div className="flex mb-12">
-                    <Seat seatno="08" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="09" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="10" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="11" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="12" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="13" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="14" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
+                    <Seat
+                      seatno="08"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="09"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="10"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="11"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="12"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="13"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="14"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
                   </div>
                   <div className="flex mb-2 ml-40">
-                    <Seat seatno="15" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="16" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="17" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="18" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="19" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
+                    <Seat
+                      seatno="15"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="16"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="17"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="18"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="19"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
                   </div>
                 </div>
               </div>
@@ -223,29 +312,124 @@ const BusCard = (props) => {
                 </div>
                 <div className="mt-3 ml-4">
                   <div className="flex">
-                    <Seat seatno="20" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="21" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="22" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="23" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="24" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="25" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="26" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
+                    <Seat
+                      seatno="20"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="21"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="22"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="23"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="24"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="25"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="26"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
                   </div>
                   <div className="flex mb-12">
-                    <Seat seatno="27" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="28" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="29" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="30" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="31" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="32" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="33" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
+                    <Seat
+                      seatno="27"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="28"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="29"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="30"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="31"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="32"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="33"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
                   </div>
                   <div className="flex mb-2 ml-40">
-                    <Seat seatno="34" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="35" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="36" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="37" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
-                    <Seat seatno="38" setSelectedSeat={setSelectedSeat} filteredSeats={filteredSeats} setFilterPrice={setFilterPrice}/>
+                    <Seat
+                      seatno="34"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="35"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="36"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="37"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
+                    <Seat
+                      seatno="38"
+                      setSelectedSeat={setSelectedSeat}
+                      filteredSeats={filteredSeats}
+                      setFilterPrice={setFilterPrice}
+                    />
                   </div>
                 </div>
               </div>
@@ -287,6 +471,7 @@ const BusCard = (props) => {
                 </div>
                 <div>
                   <button
+                    onClick={handleClick}
                     className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
     duration-500"
                   >
