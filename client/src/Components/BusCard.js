@@ -55,7 +55,7 @@ const BusCard = (props) => {
   }
   return (
     <div className="mb-4 ">
-      {fromTo.INIT_STATE.From===props.busFrom && fromTo.INIT_STATE.From===props.busFrom && (<div className="border-2 border-gray-300 flex rounded-md ">
+      {fromTo.INIT_STATE.From===props.busFrom && fromTo.INIT_STATE.To===props.busTo && (<div className="border-2 border-gray-300 flex rounded-md ">
         <div className="basis-3/4 border-r-2 border-gray-300 text-left p-4">
           <div className="flex ">
             <div className="font-bold">
@@ -457,21 +457,21 @@ const BusCard = (props) => {
                 <div className="font-bold text-md">Boarding and Dropping</div>
                 <div className="flex justify-between my-2">
                   <div className="text-xs">
-                    <div className="font-semibold">-Pune</div>
+                    <div className="font-semibold">-{props.busFrom}</div>
                     <div className="text-gray-400">
                       Taxi Service, Chhatrapati road
                     </div>
                   </div>
-                  <div className="text-sm font-bold">22:45</div>
+                  <div className="text-sm font-bold">{props.busFromTime}</div>
                 </div>
                 <div className="flex justify-between mt-2 border-b-2 border-gray-300 pb-2 pt-2">
                   <div className="text-xs ">
-                    <div className="font-semibold">-Kolkata</div>
+                    <div className="font-semibold">-{props.busTo}</div>
                     <div className="text-gray-400">
                       Taxi Service, Chhatrapati road
                     </div>
                   </div>
-                  <div className="text-sm font-bold">08:20</div>
+                  <div className="text-sm font-bold">{props.busToTime}</div>
                 </div>
                 <div className="flex justify-between text-sm font-bold border-b-2 border-gray-300 py-1">
                   <div>Seat No</div>
