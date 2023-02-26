@@ -7,23 +7,23 @@ import { setBusData } from "../state/actions/busData";
 const BusCard = (props) => {
   const links = ["Live Tracking", "Policies", "Photos", "Amenities", "Reviews"];
   const seats = ["Vacant", "Reserved", "Selected"];
-  const [filterPrice, setFilterPrice] = useState("");
-  const [selectedSeat, setSelectedSeat] = useState("");
+  const [filterPrice, setFilterPrice] = useState(0);
+  const [selectedSeat, setSelectedSeat] = useState([]);
   const [radioPriceFilter, setRadioPriceFilter] = useState("All")
 
   const dispatch = useDispatch();
 
   const setFilter = (event) => {
     if (event.target.value === "699") {
-      setRadioPriceFilter("699");
+      setRadioPriceFilter(699);
     }else if (event.target.value === "All") {
       setRadioPriceFilter("All");
     } else if (event.target.value === "899") {
-      setRadioPriceFilter("899");
+      setRadioPriceFilter(899);
     } else if (event.target.value === "1199") {
-      setRadioPriceFilter("1199");
+      setRadioPriceFilter(1199);
     } else if (event.target.value === "1599") {
-      setRadioPriceFilter("1599");
+      setRadioPriceFilter(1599);
     }
   };
 
@@ -203,6 +203,8 @@ const BusCard = (props) => {
                         setSelectedSeat={setSelectedSeat}
                         setFilterPrice={setFilterPrice}
                         radioPriceFilter={radioPriceFilter}
+                        filterPrice={filterPrice}
+                        selectedSeat={selectedSeat}
                       />
                     ))}
                   </div>
@@ -215,6 +217,8 @@ const BusCard = (props) => {
                         setSelectedSeat={setSelectedSeat}
                         setFilterPrice={setFilterPrice}
                         radioPriceFilter={radioPriceFilter}
+                        filterPrice={filterPrice}
+                        selectedSeat={selectedSeat}
                       />
                     ))}
                   </div>
@@ -227,6 +231,8 @@ const BusCard = (props) => {
                         setSelectedSeat={setSelectedSeat}
                         setFilterPrice={setFilterPrice}
                         radioPriceFilter={radioPriceFilter}
+                        filterPrice={filterPrice}
+                        selectedSeat={selectedSeat}
                       />
                     ))}
                   </div>
@@ -249,6 +255,8 @@ const BusCard = (props) => {
                         setSelectedSeat={setSelectedSeat}
                         setFilterPrice={setFilterPrice}
                         radioPriceFilter={radioPriceFilter}
+                        filterPrice={filterPrice}
+                        selectedSeat={selectedSeat}
                       />
                     ))}
                   </div>
@@ -261,6 +269,8 @@ const BusCard = (props) => {
                         setSelectedSeat={setSelectedSeat}
                         setFilterPrice={setFilterPrice}
                         radioPriceFilter={radioPriceFilter}
+                        filterPrice={filterPrice}
+                        selectedSeat={selectedSeat}
                       />
                     ))}
                   </div>
@@ -273,6 +283,8 @@ const BusCard = (props) => {
                         setSelectedSeat={setSelectedSeat}
                         setFilterPrice={setFilterPrice}
                         radioPriceFilter={radioPriceFilter}
+                        filterPrice={filterPrice}
+                        selectedSeat={selectedSeat}
                       />
                     ))}
                   </div>
@@ -302,7 +314,7 @@ const BusCard = (props) => {
                 </div>
                 <div className="flex justify-between text-sm font-bold border-b-2 border-gray-300 py-1">
                   <div>Seat No</div>
-                  <div>{selectedSeat}</div>
+                  <div>{selectedSeat.join(', ')}</div>
                 </div>
                 <div className="text-sm font-bold py-1">Fare Details</div>
                 <div className="flex justify-between my-1">

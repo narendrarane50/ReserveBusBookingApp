@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Card from "../Components/Card";
 import RatingCard from "../Components/RatingCard";
 import Background from "../images/background.jpg";
@@ -11,8 +11,14 @@ import { setFromTo } from "../state/actions/fromTo";
 const Home_Page = (props) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const data = ["Mumbai ", "Pune", "Delhi", "Chennai", "Banglore"];
+  const data = ["Mumbai", "Pune", "Delhi", "Chennai", "Banglore"];
+  const [cities, setCities] = useState(data)
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setCities(data.filter((val)=>val!==from && val!==to))
+  }, [from,to])
+  
 
   const handleClick = async () => {
     if (from === "" || to === "") {
@@ -70,10 +76,10 @@ const Home_Page = (props) => {
         <div className="flex-col flex items-center">
           <div className="flex flex-col md:flex-row justify-center items-center pt-[15vh] h-[65vh] rounded-xl ">
             <div className="border-2 pr-3 py-4 rounded-l-xl text-left pl-3 bg-white">
-              <SearchInput setVal={setFrom} data={data} placeholder="From" />
+              <SearchInput setVal={setFrom} data={cities} placeholder="From" />
             </div>
             <div className="border-2 pr-3 py-4 text-left pl-3 bg-white">
-              <SearchInput setVal={setTo} data={data} placeholder="To" />
+              <SearchInput setVal={setTo} data={cities} placeholder="To" />
             </div>
             <div className="border-2 pr-3 py-4 pl-3 rounded-r-xl bg-white">
               <input

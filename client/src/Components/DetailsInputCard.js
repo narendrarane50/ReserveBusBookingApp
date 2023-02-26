@@ -8,7 +8,7 @@ const DetailsInputCard = () => {
       <div className="text-left p-4">
         <div className="font-bold">
           <span>Passenger1</span>
-          <span className="ml-3">Seat {busData.busLocation.selectedSeat}</span>
+          <span className="ml-3">Seat {busData.busLocation.selectedSeat.join(', ')}</span>
         </div>
         <div className="flex">
           <div className="my-2">

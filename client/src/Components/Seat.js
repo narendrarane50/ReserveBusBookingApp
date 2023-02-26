@@ -6,22 +6,25 @@ const Seat = ({
   setFilterPrice,
   price,
   radioPriceFilter,
+  filterPrice,
+  selectedSeat
 }) => {
   const [selectSeat, setSelectSeat] = useState(false);
   const [bgColor, setbgColor] = useState("");
+
 
   let ChangeColor = () => {
     if (radioPriceFilter === "All" || radioPriceFilter === price) {
       if (selectSeat === false) {
         setSelectSeat(true);
         setbgColor("#0272F8");
-        setSelectedSeat(seatno);
-        setFilterPrice(price);
+        setSelectedSeat([...selectedSeat,seatno]);
+        setFilterPrice(filterPrice+price);
       } else {
         setSelectSeat(false);
         setbgColor("");
-        setSelectedSeat("");
-        setFilterPrice("");
+        setSelectedSeat(selectedSeat.filter((value)=>value !== seatno));
+        setFilterPrice(filterPrice-price);
       }
     }
   };
