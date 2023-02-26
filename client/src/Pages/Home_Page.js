@@ -10,17 +10,21 @@ import { setFromTo } from "../state/actions/fromTo";
 
 const Home_Page = (props) => {
   const [from, setFrom] = useState("");
-  const [to,setTo] = useState("")
+  const [to, setTo] = useState("");
   const data = ["Mumbai ", "Pune", "Delhi", "Chennai", "Banglore"];
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleClick = async () => {
-    props.setAuthentication(true);
-    await setFromTo(dispatch,{
-      From:from,
-      To:to
-    })
-  }
+    if (from === "" || to === "") {
+      alert("Please fill the given fields");
+    } else {
+      props.setAuthentication(true);
+      await setFromTo(dispatch, {
+        From: from,
+        To: to,
+      });
+    }
+  };
   const cardDetails = [
     {
       title: "2000+",
@@ -81,16 +85,12 @@ const Home_Page = (props) => {
               />
             </div>
           </div>
-          <button className="text-white bg-[#FF8700] mt-6 p-4 text-3xl rounded-xl px-16 ">
-            <Link
-              to="/availablebus"
-              // onClick={() => {
-              //   props.setAuthentication(true);
-              // }}
-              onClick={handleClick}
-            >
-              Search
-            </Link>
+          <button
+            onClick={handleClick}
+            className="text-white bg-[#FF8700] mt-6 p-4 text-3xl rounded-xl px-16 "
+          >
+            {!from || !to ? "Search" : ""}
+            {from && to && <Link to="/availablebus">Search</Link>}
           </button>
         </div>
       </div>
