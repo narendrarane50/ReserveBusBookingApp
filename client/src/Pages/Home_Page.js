@@ -17,6 +17,7 @@ const Home_Page = (props) => {
   const [day, setDay] = useState("");
   const data = ["Mumbai", "Pune", "Delhi", "Chennai", "Banglore"];
   const [cities, setCities] = useState(data);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +40,13 @@ const Home_Page = (props) => {
   };
 
   const handleDate = (e) => {
+    const selectedDate = new Date(e.target.value);
+    const today = new Date();
+    if (selectedDate < today) {
+      return; 
+    }
+    setSelectedDate(selectedDate);
+
     setFromDate(moment(e.target.value));
     setToDate(moment(e.target.value).add(1, "days"));
     setDay(moment(e.target.value).format("dddd"));
@@ -97,6 +105,7 @@ const Home_Page = (props) => {
               <input
                 type="date"
                 name="date"
+                value={selectedDate.toISOString().slice(0, 10)}
                 onChange={handleDate}
                 className="w-80 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Travel-Date"
