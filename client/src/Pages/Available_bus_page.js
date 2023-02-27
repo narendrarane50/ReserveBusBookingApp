@@ -12,7 +12,9 @@ const Available_bus_page = () => {
   useEffect(() => {
     const buses = BusData.filter((bus) => {
       return (
-        fromTo.INIT_STATE.From === bus.From && fromTo.INIT_STATE.To === bus.To
+        fromTo.INIT_STATE.From === bus.From &&
+        fromTo.INIT_STATE.To === bus.To &&
+        bus.DaysRunOn.includes(fromTo.INIT_STATE.Day)
       );
     });
     setFilteredBus(buses);
@@ -30,9 +32,9 @@ const Available_bus_page = () => {
             busRating={bus.Rating}
             busFrom={bus.From}
             busTo={bus.To}
-            busFromDate={bus.FromDate}
+            busFromDate={fromTo.INIT_STATE.FromDate.format("ll")}
             busFromTime={bus.FromTime}
-            busToDate={bus.ToDate}
+            busToDate={fromTo.INIT_STATE.ToDate.format("ll")}
             busToTime={bus.ToTime}
             busTimeInterval={bus.TimeInterval}
             busSeatsUpper={bus.seatsUpper}

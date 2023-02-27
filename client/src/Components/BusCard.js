@@ -9,14 +9,14 @@ const BusCard = (props) => {
   const seats = ["Vacant", "Reserved", "Selected"];
   const [filterPrice, setFilterPrice] = useState(0);
   const [selectedSeat, setSelectedSeat] = useState([]);
-  const [radioPriceFilter, setRadioPriceFilter] = useState("All")
+  const [radioPriceFilter, setRadioPriceFilter] = useState("All");
 
   const dispatch = useDispatch();
 
   const setFilter = (event) => {
     if (event.target.value === "699") {
       setRadioPriceFilter(699);
-    }else if (event.target.value === "All") {
+    } else if (event.target.value === "All") {
       setRadioPriceFilter("All");
     } else if (event.target.value === "899") {
       setRadioPriceFilter(899);
@@ -45,76 +45,76 @@ const BusCard = (props) => {
 
   return (
     <div className="mb-4 ">
-          <div className="border-2 border-gray-300 flex rounded-md ">
-            <div className="basis-3/4 border-r-2 border-gray-300 text-left p-4">
-              <div className="flex ">
-                <div className="font-bold">
-                  <span className="text-xl">{props.busName}</span>
-                  <span className="bg-[#119513] rounded-md text-white p-0.5 ml-2">
-                    <ion-icon name="star-outline"></ion-icon>
-                    {props.busRating}
-                  </span>
-                  <span className="px-2 text-gray-400 text-xs">Ratings</span>
-                </div>
-              </div>
-              <div className="flex py-2 text-xs text-slate-500">
-                <div>
-                  <span className="border-r pr-2 border-slate-600">
-                    AC Sleeper (2-1)
-                  </span>
-                </div>
-                <div>
-                  <span className="border-r px-2 border-slate-600">
-                    24 seats left
-                  </span>
-                </div>
-                <div>
-                  <span className="px-2">0 windows seat</span>
-                </div>
-              </div>
-              <div className="flex py-2 ">
-                <div>
-                  <span className=" pr-2 text-lg font-semibold">
-                    {props.busFromTime}, {props.busFromDate}
-                  </span>
-                </div>
-                <div>
-                  <span className="px-2 text-s text-slate-500 text-center align-middle">
-                    ----------{props.busTimeInterval}---------
-                  </span>
-                </div>
-                <div>
-                  <span className="px-2 text-lg font-semibold">
-                    {props.busToTime}, {props.busToDate}
-                  </span>
-                </div>
-              </div>
-              <div className="flex text-blue-700 pt-8">
-                {links.map((link, id) => (
-                  <div key={id} className="pr-8">
-                    {link}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="basis-1/4 p-4">
-              <div className="text-md font-semibold">Trip Cost</div>
-              <div className="pt-3 text-xs text-gray-500">Starting from</div>
-              <div className="font-bold text-2xl">&#8377; 899</div>
-              <button
-                className="bg-[#FF8700] text-white font-[Poppins] mt-3 py-2 px-8 rounded  hover:bg-indigo-400 
-    duration-500"
-                onClick={() =>
-                  props.busid === props.showBus
-                    ? props.setShowBus("")
-                    : props.setShowBus(props.busid)
-                }
-              >
-                View Seat
-              </button>
+      <div className="border-2 border-gray-300 flex rounded-md ">
+        <div className="basis-3/4 border-r-2 border-gray-300 text-left p-4">
+          <div className="flex ">
+            <div className="font-bold">
+              <span className="text-xl">{props.busName}</span>
+              <span className="bg-[#119513] rounded-md text-white p-0.5 ml-2">
+                <ion-icon name="star-outline"></ion-icon>
+                {props.busRating}
+              </span>
+              <span className="px-2 text-gray-400 text-xs">Ratings</span>
             </div>
           </div>
+          <div className="flex py-2 text-xs text-slate-500">
+            <div>
+              <span className="border-r pr-2 border-slate-600">
+                AC Sleeper (2-1)
+              </span>
+            </div>
+            <div>
+              <span className="border-r px-2 border-slate-600">
+                24 seats left
+              </span>
+            </div>
+            <div>
+              <span className="px-2">0 windows seat</span>
+            </div>
+          </div>
+          <div className="flex py-2 ">
+            <div>
+              <span className=" pr-2 text-lg font-semibold">
+                {props.busFromTime}, {props.busFromDate}
+              </span>
+            </div>
+            <div>
+              <span className="px-2 text-s text-slate-500 text-center align-middle">
+                ----------{props.busTimeInterval}---------
+              </span>
+            </div>
+            <div>
+              <span className="px-2 text-lg font-semibold">
+                {props.busToTime}, {props.busToDate}
+              </span>
+            </div>
+          </div>
+          <div className="flex text-blue-700 pt-8">
+            {links.map((link, id) => (
+              <div key={id} className="pr-8">
+                {link}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="basis-1/4 p-4">
+          <div className="text-md font-semibold">Trip Cost</div>
+          <div className="pt-3 text-xs text-gray-500">Starting from</div>
+          <div className="font-bold text-2xl">&#8377; 899</div>
+          <button
+            className="bg-[#FF8700] text-white font-[Poppins] mt-3 py-2 px-8 rounded  hover:bg-indigo-400 
+    duration-500"
+            onClick={() =>
+              props.busid === props.showBus
+                ? props.setShowBus("")
+                : props.setShowBus(props.busid)
+            }
+          >
+            View Seat
+          </button>
+        </div>
+      </div>
       {props.showBus === props.busid && (
         <div className="border-2 border-gray-300 rounded-md ">
           <div className="m-2 flex">
@@ -314,7 +314,7 @@ const BusCard = (props) => {
                 </div>
                 <div className="flex justify-between text-sm font-bold border-b-2 border-gray-300 py-1">
                   <div>Seat No</div>
-                  <div>{selectedSeat.join(', ')}</div>
+                  <div>{selectedSeat.join(", ")}</div>
                 </div>
                 <div className="text-sm font-bold py-1">Fare Details</div>
                 <div className="flex justify-between my-1">

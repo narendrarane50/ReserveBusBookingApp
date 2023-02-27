@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Components/Card";
 import RatingCard from "../Components/RatingCard";
 import Background from "../images/background.jpg";
@@ -7,29 +7,41 @@ import buses from "../images/buses.jpg";
 import SearchInput from "../Components/SearchInput";
 import { useDispatch } from "react-redux";
 import { setFromTo } from "../state/actions/fromTo";
+import moment from "moment";
 
 const Home_Page = (props) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [day, setDay] = useState("");
   const data = ["Mumbai", "Pune", "Delhi", "Chennai", "Banglore"];
-  const [cities, setCities] = useState(data)
+  const [cities, setCities] = useState(data);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setCities(data.filter((val)=>val!==from && val!==to))
-  }, [from,to])
-  
+    setCities(data.filter((val) => val !== from && val !== to));
+  }, [from, to]);
 
   const handleClick = async () => {
-    if (from === "" || to === "") {
+    if (from === "" || to === "" || fromDate === "") {
       alert("Please fill the given fields");
     } else {
       props.setAuthentication(true);
       await setFromTo(dispatch, {
         From: from,
         To: to,
+        FromDate: fromDate,
+        ToDate: toDate,
+        Day: day,
       });
     }
+  };
+
+  const handleDate = (e) => {
+    setFromDate(moment(e.target.value));
+    setToDate(moment(e.target.value).add(1, "days"));
+    setDay(moment(e.target.value).format("dddd"));
   };
   const cardDetails = [
     {
@@ -84,10 +96,10 @@ const Home_Page = (props) => {
             <div className="border-2 pr-3 py-4 pl-3 rounded-r-xl bg-white">
               <input
                 type="date"
+                name="date"
+                onChange={handleDate}
                 className="w-80 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Travel-Date"
-                aria-label="Travel-Date"
-                aria-describedby="button-addon2"
               />
             </div>
           </div>
@@ -95,8 +107,8 @@ const Home_Page = (props) => {
             onClick={handleClick}
             className="text-white bg-[#FF8700] mt-6 p-4 text-3xl rounded-xl px-16 "
           >
-            {!from || !to ? "Search" : ""}
-            {from && to && <Link to="/availablebus">Search</Link>}
+            {!from || !to || !fromDate ? "Search" : ""}
+            {from && to && fromDate && <Link to="/availablebus">Search</Link>}
           </button>
         </div>
       </div>
