@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BusCard from "../Components/BusCard";
 import Filters from "../Components/Filters";
-import BusData from "../Data/BusData";
+//import BusData from "../Data/BusData";
 import { useSelector } from "react-redux";
 
 const Available_bus_page = () => {
@@ -10,14 +10,21 @@ const Available_bus_page = () => {
   const fromTo = useSelector((state) => state.fromTo);
 
   useEffect(() => {
-    const buses = BusData.filter((bus) => {
-      return (
-        fromTo.INIT_STATE.From === bus.From &&
-        fromTo.INIT_STATE.To === bus.To &&
-        bus.DaysRunOn.includes(fromTo.INIT_STATE.Day)
-      );
-    });
-    setFilteredBus(buses);
+    const func = async () => {
+      const myData = {
+        From: fromTo.INIT_STATE.From,
+        To: fromTo.INIT_STATE.To,
+        DaysRunOn: fromTo.INIT_STATE.Day,
+      };
+      const queryString = new URLSearchParams(myData).toString();
+      const buses = await fetch(`http://localhost:5000/busData?${queryString}`)
+        .then((response) => response.json())
+        .then((data) => data)
+        .catch((error) => console.error(error));
+
+      setFilteredBus(buses);
+    };
+    func();
   }, []);
 
   return (
@@ -27,7 +34,6 @@ const Available_bus_page = () => {
         {filteredBus.map((bus, id) => (
           <BusCard
             key={id}
-            busid={bus.id}
             busName={bus.BusName}
             busRating={bus.Rating}
             busFrom={bus.From}

@@ -42,8 +42,8 @@ const Home_Page = (props) => {
   const handleDate = (e) => {
     const selectedDate = new Date(e.target.value);
     const today = new Date();
-    if (selectedDate < today.setDate(today.getDate()-1)) {
-      return; 
+    if (selectedDate < today.setDate(today.getDate() - 1)) {
+      return;
     }
     setSelectedDate(selectedDate);
 
