@@ -34,6 +34,7 @@ const Available_bus_page = () => {
         {filteredBus.map((bus, id) => (
           <BusCard
             key={id}
+            busid={bus._id}
             busName={bus.BusName}
             busRating={bus.Rating}
             busFrom={bus.From}

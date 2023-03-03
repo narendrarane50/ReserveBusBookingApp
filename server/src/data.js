@@ -6,7 +6,7 @@ const BusData = [
     To: "Pune",
     FromTime: "22:45",
     ToTime: "6:20",
-    DaysRunOn: ["Monday", "Wednesday", "Friday", "Sunday"],
+    DaysRunOn: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     TimeInterval: "7 hrs 35 mins",
     seatsUpper: {
       seatsTop: [
