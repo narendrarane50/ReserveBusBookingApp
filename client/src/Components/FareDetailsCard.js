@@ -2,8 +2,24 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const FareDetailsCard = () => {
+const FareDetailsCard = ({userDetails}) => {
   const busData = useSelector((state) => state.busData);
+
+  const handleClick = async () =>{
+    try{
+      const response = await fetch('http://localhost:5000/addUserDetails',{
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify(userDetails)
+      })
+
+      await response.json()
+    } catch(err){
+      console.error(err)
+    }
+  }
   return (
     <div className="basis-1/4 ml-3">
       <div className="p-4 border-2 rounded-md">
@@ -27,6 +43,7 @@ const FareDetailsCard = () => {
         <button
           className="bg-[#FF8700] text-white font-[Poppins] mt-6 py-2 px-8 w-full rounded  hover:bg-indigo-400 
     duration-500"
+          onClick={handleClick}
         >
           <Link to="/payment">Proceed to Payment</Link>
         </button>
