@@ -39,7 +39,7 @@ const Available_bus_page = () => {
             busRating={bus.Rating}
             busFrom={bus.From}
             busTo={bus.To}
-            busFromDate={fromTo.INIT_STATE.FromDate.format("ll")}
+            busFromDate={fromTo.INIT_STATE.FromDate}
             busFromTime={bus.FromTime}
             busToDate={fromTo.INIT_STATE.ToDate.format("ll")}
             busToTime={bus.ToTime}

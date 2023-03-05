@@ -10,6 +10,7 @@ const BusCard = (props) => {
   const [filterPrice, setFilterPrice] = useState(0);
   const [selectedSeat, setSelectedSeat] = useState([]);
   const [radioPriceFilter, setRadioPriceFilter] = useState("All");
+  const [bookedSeats, setBookedSeats] = useState([])
 
   const dispatch = useDispatch();
 
@@ -27,11 +28,31 @@ const BusCard = (props) => {
     }
   };
 
+  const viewSeats = () => {
+    props.busid === props.showBus
+      ? props.setShowBus("")
+      : props.setShowBus(props.busid);
+    
+      const func = async () => {
+        let date= encodeURIComponent(props.busFromDate)
+        const buses = await fetch(`http://localhost:5000/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`)
+          .then((response) => response.json())
+          .then((data) => data)
+          .catch((error) => console.error(error));
+
+          let seats=[]
+          buses.forEach((bus)=>bus.Seats.forEach((val)=>seats.push(val)))
+          setBookedSeats(seats)
+      };
+      func();
+      
+  };
+
   const a = {
-    busID:props.busid,
+    busID: props.busid,
     busName: props.busName,
     busRating: props.busRating,
-    busFromDate: props.busFromDate,
+    busFromDate: props.busFromDate.format("ll"),
     busFromTime: props.busFromTime,
     busToDate: props.busToDate,
     busToTime: props.busToTime,
@@ -76,7 +97,7 @@ const BusCard = (props) => {
           <div className="flex py-2 ">
             <div>
               <span className=" pr-2 text-lg font-semibold">
-                {props.busFromTime}, {props.busFromDate}
+                {props.busFromTime}, {props.busFromDate.format("ll")}
               </span>
             </div>
             <div>
@@ -106,11 +127,7 @@ const BusCard = (props) => {
           <button
             className="bg-[#FF8700] text-white font-[Poppins] mt-3 py-2 px-8 rounded  hover:bg-indigo-400 
     duration-500"
-            onClick={() =>
-              props.busid === props.showBus
-                ? props.setShowBus("")
-                : props.setShowBus(props.busid)
-            }
+            onClick={viewSeats}
           >
             View Seat
           </button>
@@ -206,6 +223,7 @@ const BusCard = (props) => {
                         radioPriceFilter={radioPriceFilter}
                         filterPrice={filterPrice}
                         selectedSeat={selectedSeat}
+                        bookedSeats={bookedSeats}
                       />
                     ))}
                   </div>
@@ -220,6 +238,7 @@ const BusCard = (props) => {
                         radioPriceFilter={radioPriceFilter}
                         filterPrice={filterPrice}
                         selectedSeat={selectedSeat}
+                        bookedSeats={bookedSeats}
                       />
                     ))}
                   </div>
@@ -234,6 +253,7 @@ const BusCard = (props) => {
                         radioPriceFilter={radioPriceFilter}
                         filterPrice={filterPrice}
                         selectedSeat={selectedSeat}
+                        bookedSeats={bookedSeats}
                       />
                     ))}
                   </div>
@@ -258,6 +278,7 @@ const BusCard = (props) => {
                         radioPriceFilter={radioPriceFilter}
                         filterPrice={filterPrice}
                         selectedSeat={selectedSeat}
+                        bookedSeats={bookedSeats}
                       />
                     ))}
                   </div>
@@ -272,6 +293,7 @@ const BusCard = (props) => {
                         radioPriceFilter={radioPriceFilter}
                         filterPrice={filterPrice}
                         selectedSeat={selectedSeat}
+                        bookedSeats={bookedSeats}
                       />
                     ))}
                   </div>
@@ -286,6 +308,7 @@ const BusCard = (props) => {
                         radioPriceFilter={radioPriceFilter}
                         filterPrice={filterPrice}
                         selectedSeat={selectedSeat}
+                        bookedSeats={bookedSeats}
                       />
                     ))}
                   </div>

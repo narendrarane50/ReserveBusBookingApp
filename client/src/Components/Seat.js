@@ -7,13 +7,15 @@ const Seat = ({
   price,
   radioPriceFilter,
   filterPrice,
-  selectedSeat
+  selectedSeat,
+  bookedSeats
 }) => {
   const [selectSeat, setSelectSeat] = useState(false);
   const [bgColor, setbgColor] = useState("");
 
 
   let ChangeColor = () => {
+    if(!bookedSeats.includes(seatno)){
     if (radioPriceFilter === "All" || radioPriceFilter === price) {
       if (selectSeat === false) {
         setSelectSeat(true);
@@ -27,6 +29,7 @@ const Seat = ({
         setFilterPrice(filterPrice-price);
       }
     }
+  }
   };
   return (
     <div>
@@ -36,7 +39,7 @@ const Seat = ({
             ? "border-gray-400"
             : "border-gray-200"
         } w-14 h-5 rounded-sm mx-3 hover:bg-slate-300`}
-        style={{ background: bgColor }}
+        style={{ background: (!bookedSeats.includes(seatno))?bgColor:'#838383 ' }}
         onClick={ChangeColor}
       ></button>
     </div>

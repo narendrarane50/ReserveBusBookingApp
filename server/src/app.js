@@ -48,4 +48,20 @@ app.post("/addUserDetails", (req,res)=>{
   });
 })
 
+app.get("/fetchUserDetails", (req, res) => {
+  const { BusID,FromDate } = req.query;
+  addUserDetails
+    .find({ BusID,FromDate })
+    .then((data, err) => {
+      if (!err) {
+        res.json(data);
+        res.end();
+      }
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).send(err);
+    });
+});
+
 module.exports = app;
