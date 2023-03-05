@@ -1,11 +1,13 @@
 import React,{useState} from "react";
+import { useSelector } from "react-redux";
 import BusInfoCard from "../Components/BusInfoCard";
 import DetailsInputCard from "../Components/DetailsInputCard";
 import FareDetailsCard from "../Components/FareDetailsCard";
 
 const Info_page = () => {
+  const busData = useSelector((state) => state.busData);
   const [userDetails, setUserDetails] = useState({
-    Name:'',Gender:'',Age:0,Email:'',MobileNo:''
+    BusID:busData.busLocation.busID,Name:'',Gender:'',Age:0,Email:'',MobileNo:'',FromDate:busData.busLocation.busFromDate,Seats:busData.busLocation.selectedSeat,Price:busData.busLocation.filterPrice
   })
   return (
     <div className="flex mt-24 mb-8 mx-10">

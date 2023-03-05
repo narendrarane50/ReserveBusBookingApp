@@ -24,13 +24,17 @@ app.get("/busData", (req, res) => {
 
 app.use(express.json())
 app.post("/addUserDetails", (req,res)=>{
-  const { Name, Gender, Age, Email, MobileNo } = req.body;
+  const { BusID,Name, Gender, Age, Email, MobileNo,FromDate,Seats,Price } = req.body;
   const addUser = new addUserDetails({
+    BusID,
     Name,
     Gender,
     Age,
     Email,
-    MobileNo
+    MobileNo,
+    FromDate,
+    Seats,
+    Price
   })
   addUser.save().then(
     (data, err) => {

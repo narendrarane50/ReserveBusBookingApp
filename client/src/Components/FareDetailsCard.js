@@ -1,9 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../state/actions/userDetails";
 
 const FareDetailsCard = ({userDetails}) => {
   const busData = useSelector((state) => state.busData);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleClick = async () =>{
     try{
@@ -15,10 +19,14 @@ const FareDetailsCard = ({userDetails}) => {
         body:JSON.stringify(userDetails)
       })
 
-      await response.json()
+      let res = await response.json()
+      await setUserDetails(dispatch, {res});
+      navigate('/payment')
     } catch(err){
       console.error(err)
     }
+
+    
   }
   return (
     <div className="basis-1/4 ml-3">
@@ -45,7 +53,7 @@ const FareDetailsCard = ({userDetails}) => {
     duration-500"
           onClick={handleClick}
         >
-          <Link to="/payment">Proceed to Payment</Link>
+          Proceed to Payment
         </button>
       </div>
     </div>

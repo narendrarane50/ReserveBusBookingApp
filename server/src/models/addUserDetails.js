@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 // Schema for validation of data before inserting the data into MongoDB Database
 const addUserDetailsSchema = new mongoose.Schema({
+    BusID: {
+        type: String,
+        required: true,
+    },
     Name: {
         type: String,
         required: true,
@@ -20,6 +24,18 @@ const addUserDetailsSchema = new mongoose.Schema({
     },
     MobileNo: {
         type: String,
+        required: true,
+    },
+    FromDate: {
+        type: Date,
+        required: true,
+    },
+    Seats: {
+        type: Array,
+        required: true,
+    },
+    Price: {
+        type: Number,
         required: true,
     },
 })

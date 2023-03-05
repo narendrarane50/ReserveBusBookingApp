@@ -28,6 +28,7 @@ const BusCard = (props) => {
   };
 
   const a = {
+    busID:props.busid,
     busName: props.busName,
     busRating: props.busRating,
     busFromDate: props.busFromDate,
