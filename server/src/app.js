@@ -32,7 +32,7 @@ app.post("/addUserDetails", (req,res)=>{
     Age,
     Email,
     MobileNo,
-    FromDate: FromDate.toISOString().substr(0, 10),
+    FromDate,
     Seats,
     Price
   })

@@ -17,7 +17,7 @@ const Available_bus_page = () => {
         DaysRunOn: fromTo.INIT_STATE.Day,
       };
       const queryString = new URLSearchParams(myData).toString();
-      const buses = await fetch(`http://localhost:5000/busData?${queryString}`)
+      const buses = await fetch(`https://reserve-36qu.onrender.com/busData?${queryString}`)
         .then((response) => response.json())
         .then((data) => data)
         .catch((error) => console.error(error));

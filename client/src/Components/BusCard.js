@@ -37,7 +37,7 @@ const BusCard = (props) => {
         console.log(props.busFromDate.format('yyyy-MM-DD'))
         let date= encodeURIComponent(props.busFromDate.format('yyyy-MM-DD'))
         //console.log(date)
-        const buses = await fetch(`http://localhost:5000/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`)
+        const buses = await fetch(`https://reserve-36qu.onrender.com/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`)
           .then((response) => response.json())
           .then((data) => data)
           .catch((error) => console.error(error));
