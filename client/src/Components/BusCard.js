@@ -34,7 +34,9 @@ const BusCard = (props) => {
       : props.setShowBus(props.busid);
     
       const func = async () => {
-        let date= encodeURIComponent(props.busFromDate)
+        console.log(props.busFromDate.format('yyyy-MM-DD'))
+        let date= encodeURIComponent(props.busFromDate.format('yyyy-MM-DD'))
+        //console.log(date)
         const buses = await fetch(`http://localhost:5000/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`)
           .then((response) => response.json())
           .then((data) => data)
@@ -43,6 +45,8 @@ const BusCard = (props) => {
           let seats=[]
           buses.forEach((bus)=>bus.Seats.forEach((val)=>seats.push(val)))
           setBookedSeats(seats)
+          console.log(seats)
+          console.log(buses)
       };
       func();
       

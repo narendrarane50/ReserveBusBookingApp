@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../state/actions/userDetails";
 
@@ -11,7 +11,7 @@ const FareDetailsCard = ({userDetails}) => {
 
   const handleClick = async () =>{
     try{
-      const response = await fetch('http://localhost:5000/addUserDetails',{
+      const response = await fetch('https://reserve-36qu.onrender.com/addUserDetails',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',

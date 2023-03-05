@@ -32,7 +32,7 @@ app.post("/addUserDetails", (req,res)=>{
     Age,
     Email,
     MobileNo,
-    FromDate,
+    FromDate: FromDate.toISOString().substr(0, 10),
     Seats,
     Price
   })
@@ -51,7 +51,7 @@ app.post("/addUserDetails", (req,res)=>{
 app.get("/fetchUserDetails", (req, res) => {
   const { BusID,FromDate } = req.query;
   addUserDetails
-    .find({ BusID,FromDate })
+    .find({ BusID,FromDate})
     .then((data, err) => {
       if (!err) {
         res.json(data);
