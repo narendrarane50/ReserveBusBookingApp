@@ -17,7 +17,7 @@ const Available_bus_page = () => {
         DaysRunOn: fromTo.INIT_STATE.Day,
       };
       const queryString = new URLSearchParams(myData).toString();
-      const buses = await fetch(`https://reserve-36qu.onrender.com/busData?${queryString}`)
+      const buses = await fetch(`https://reserve-bus-booking-app.vercel.app/busData?${queryString}`)
         .then((response) => response.json())
         .then((data) => data)
         .catch((error) => console.error(error));

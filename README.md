@@ -32,7 +32,7 @@ The app has been deployed on
 https://reserve-bus-booking.netlify.app/
 
 and server on 
-https://reserve-36qu.onrender.com/
+https://reserve-bus-booking-app.vercel.app/
 
 
 ## FAQ

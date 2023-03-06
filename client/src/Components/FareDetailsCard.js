@@ -11,7 +11,7 @@ const FareDetailsCard = ({userDetails}) => {
 
   const handleClick = async () =>{
     try{
-      const response = await fetch('https://reserve-36qu.onrender.com/addUserDetails',{
+      const response = await fetch('https://reserve-bus-booking-app.vercel.app/addUserDetails',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json',

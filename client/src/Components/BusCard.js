@@ -36,7 +36,7 @@ const BusCard = (props) => {
       console.log(props.busFromDate.format("yyyy-MM-DD"));
       let date = encodeURIComponent(props.busFromDate.format("yyyy-MM-DD"));
       const buses = await fetch(
-        `https://reserve-36qu.onrender.com/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`
+        `https://reserve-bus-booking-app.vercel.app/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`
       )
         .then((response) => response.json())
         .then((data) => data)
