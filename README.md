@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# ReserveBusBookingApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is a MERN Stack Web Application which is used to book Bus Tickets from any location to any location at a given date. In this application you can choose the Bus of your choice, you can choose the seats of your choice from the available seats. It also shows the booked seats and the available seats data. You can also filter the seats according to the prices and select the seats from your estimated budget. After selecting the seats you just have to click on Proceed to Book and fill the user Details and click on Proceed to Pay. Your seats will be booked instantly and you will be redirected to the Tickets page.  
 
-## Available Scripts
 
-In the project directory, you can run:
+## Technologies that are used in this project.
+  <ul>
+    <li>React</li> 
+    <li>Redux</li> 
+    <li>React-Router-Dom</li> 
+    <li>Tailwind-CSS</li> 
+    <li>Moment</li> 
+    <li>Mongoose</li> 
+    <li>Express</li>  
+    <li>MongoDB</li> 
+    <li>Nodemon</li>  
+    <li>Cors</li>   
+  </ul>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Shows which seats are already booked and which seats are available
+- Book the Seats from anywhere to anywhere of your prefered choice
+- Fetch all the bus Data stored in the MongoDB Atlas Database to the frontend and show the specific buses
+- Saving the userDetails and ticket details into MongoDB Atlas Database
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deployment
 
-### `npm run build`
+The app has been deployed on 
+https://reserve-bus-booking.netlify.app/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+and server on 
+https://reserve-36qu.onrender.com/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## FAQ
 
-### `npm run eject`
+#### How to book a ticket ?
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+First insert the From and To location from where to where you want to go. Then insert the date on which date you want to book the ticket. Then select the vacant seats and click on proceed to book. Then insert the user Details and click on Proceed to Pay, your tickets for those seats will be booked. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Environment Variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run this project, you will need to add the following environment variables to your .env file
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`MONGODB_DATABASE_URL`

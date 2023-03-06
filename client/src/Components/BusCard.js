@@ -6,11 +6,10 @@ import { setBusData } from "../state/actions/busData";
 
 const BusCard = (props) => {
   const links = ["Live Tracking", "Policies", "Photos", "Amenities", "Reviews"];
-  const seats = ["Vacant", "Reserved", "Selected"];
   const [filterPrice, setFilterPrice] = useState(0);
   const [selectedSeat, setSelectedSeat] = useState([]);
   const [radioPriceFilter, setRadioPriceFilter] = useState("All");
-  const [bookedSeats, setBookedSeats] = useState([])
+  const [bookedSeats, setBookedSeats] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -32,24 +31,22 @@ const BusCard = (props) => {
     props.busid === props.showBus
       ? props.setShowBus("")
       : props.setShowBus(props.busid);
-    
-      const func = async () => {
-        console.log(props.busFromDate.format('yyyy-MM-DD'))
-        let date= encodeURIComponent(props.busFromDate.format('yyyy-MM-DD'))
-        //console.log(date)
-        const buses = await fetch(`https://reserve-36qu.onrender.com/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`)
-          .then((response) => response.json())
-          .then((data) => data)
-          .catch((error) => console.error(error));
 
-          let seats=[]
-          buses.forEach((bus)=>bus.Seats.forEach((val)=>seats.push(val)))
-          setBookedSeats(seats)
-          console.log(seats)
-          console.log(buses)
-      };
-      func();
-      
+    const func = async () => {
+      console.log(props.busFromDate.format("yyyy-MM-DD"));
+      let date = encodeURIComponent(props.busFromDate.format("yyyy-MM-DD"));
+      const buses = await fetch(
+        `https://reserve-36qu.onrender.com/fetchUserDetails?BusID=${props.busid}&FromDate=${date}`
+      )
+        .then((response) => response.json())
+        .then((data) => data)
+        .catch((error) => console.error(error));
+
+      let seats = [];
+      buses.forEach((bus) => bus.Seats.forEach((val) => seats.push(val)));
+      setBookedSeats(seats);
+    };
+    func();
   };
 
   const a = {
@@ -198,12 +195,24 @@ const BusCard = (props) => {
               </div>
             </div>
             <div className="basis-1/5 text-start text-gray-600">
-              {seats.map((seat, id) => (
-                <div key={id} className="">
-                  <input className="mr-2 leading-tight" type="checkbox" />
-                  <span className="text-sm">{seat} Seats</span>
-                </div>
-              ))}
+              <div className="flex my-2">
+                <div className="mr-2 mt-1 leading-tight border-2 h-3 w-3" />
+                <div className="text-sm">Vacant Seats</div>
+              </div>
+              <div className="flex my-2">
+                <div
+                  className="mr-2 mt-1 leading-tight border-2 h-3 w-3"
+                  style={{ backgroundColor: "#838383" }}
+                />
+                <div className="text-sm">Reserved Seats</div>
+              </div>
+              <div className="flex my-2">
+                <div
+                  className="mr-2 mt-1 leading-tight border-2 h-3 w-3"
+                  style={{ backgroundColor: "#0272F8" }}
+                />
+                <div className="text-sm">Selected Seats</div>
+              </div>
             </div>
           </div>
           <div className="flex m-2 ">
