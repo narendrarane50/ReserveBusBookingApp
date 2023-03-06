@@ -5,7 +5,12 @@ app.use(cors());
 const busData = require("./models/busData");
 const addUserDetails = require("./models/addUserDetails")
 
-// Route to get a response with an array of busData from MongoDB Database
+app.get('/', async (req, res) => {
+  res.status(200).json({
+    message: 'Reserve Bus Booking Application Server',
+  });
+});
+
 app.get("/busData", (req, res) => {
   const { From, To, DaysRunOn } = req.query;
   busData
